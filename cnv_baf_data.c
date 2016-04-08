@@ -5,7 +5,7 @@
  * Nb. Assumes you are within a samtools directory containing htslib-1.3
  *
  *   gcc -O3 -Wall -Isrc -I. -Ihtslib-1.3/ -Ihtslib-1.3/htslib -rdynamic -o cnv_baf_data -Lhtslib-1.3/ -L. cnv_baf_data.c -lhts -lbam -lpthread -lz -lm
- *  gcc -O3 -Wall -Isrc -I. -Ihtslib-1.3/ -Ihtslib-1.3/htslib -rdynamic -o cnv_baf_data -Lhtslib-1.3/ -L. cnv_baf_data.c -lhts -lbam -lpthread -lz -lm
+ *
  */
 
 #include <math.h>
@@ -183,9 +183,10 @@ int main_cnv(int argc, char *argv[]) {
     data = calloc(1, sizeof(fdata*));
     data[0] =get_fdata(argv[optind], mapQ);
 	get_cnv_data_for_regions_file(data, fname);
-    // if (data[0]->itr) hts_itr_destroy(data[0]->iter);
-    // bam_hdr_destroy(data[0]->hdr);
+    hts_idx_destroy(data[0]->idx);
+    bam_hdr_destroy(data[0]->hdr);
     if (data[0]->fp) sam_close(data[0]->fp);
+    hts_itr_destroy(data[0]->iter);
     free(data);
 return 1;
 }
