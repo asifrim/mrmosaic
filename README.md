@@ -12,6 +12,7 @@ Tomas Fitzgerald (Developer)
 Matthew Hurles (Group Leader)
 
 We are affiliated with the [Wellcome Trust Sanger Institute](http://www.sanger.ac.uk/science/groups/hurles-group), Cambridge, United Kingdom
+![Wellcome Trust Sanger Institute]("http://www.sanger.ac.uk/legal/gfx/wtsi_logo.png")
 
 ## Abstract
 
