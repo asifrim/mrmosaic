@@ -47,7 +47,7 @@ results <- annot_ll_and_recalc_sig(results,resource_dir)
 in_file = tail(strsplit(input_file, "/")[[1]],n=1)
 in_file_prefix  = gsub(x=in_file,pattern=".extraction.txt",replacement="")
 out_file_prefix = in_file_prefix
-opf1 = paste(out_dir, paste(out_file_prefix, "mrm.txt",sep="."), sep="/")
+opf1 = paste(out_dir, paste(out_file_prefix, "results.txt",sep="."), sep="/")
 
 write.table(results$sig.results, file=opf1, sep="\t", row.names=F, quote=F)
 
@@ -55,6 +55,6 @@ write.table(results$sig.results, file=opf1, sep="\t", row.names=F, quote=F)
 df_all = data.frame(chr=results$data$Chr,pos=results$data$Pos,baf=results$data$B.All,lrr=results$data$Log.R)
 df_sig = results$sig.results
 df_sig = df_sig[df_sig$ll < -8 | df_sig$ll == "-Inf",]	# NOTE: Hardcoded
-opf2   = paste(out_dir, paste(out_file_prefix, "mrm.ll_thresh.txt",sep="."), sep="/")
+opf2   = paste(out_dir, paste(out_file_prefix, "sig_results.txt",sep="."), sep="/")
 write.table(df_sig, file=opf2, sep="\t", row.names=F, quote=F)
 print(paste(Sys.time(),": Finished..."))
