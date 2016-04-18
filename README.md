@@ -25,6 +25,7 @@ MrMosaic requires the following R packages:
 * gada
 * yaml
 * argparse
+* devtools
 
 To install gada run the following command in the R console:
 ```R
@@ -42,6 +43,21 @@ F77=gfortran
 FC=gfortran
 FLIBS="-L/Users/as33/homebrew/lib/gcc/5 -lgfortran -lquadmath -lm"
 ```
+
+Once the requirements are installed, MrMosaic can be installed as follows:
+```
+git clone https://github.com/asifrim/mrmosaic
+cd mrmosaic
+make
+```
+Alternatively (if you don't want to install git, shame...) one can download the tarball and install MrMosaic from there:
+```
+wget https://github.com/asifrim/mrmosaic/archive/master.zip
+unzip master.zip
+cd mrmosaic-master
+make
+```
+
 
 
 
