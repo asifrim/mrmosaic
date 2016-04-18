@@ -1,1 +1,7 @@
 .Rproj.user
+samtools-1.3/*
+samtools-1.3.tar.bz2
+.RData
+bin/
+mrmosaic/.Rbuildignore
+mrmosaic/.Rhistory
