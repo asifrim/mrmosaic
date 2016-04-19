@@ -15,7 +15,7 @@ We are affiliated with the [Wellcome Trust Sanger Institute](http://www.sanger.a
 
 ## Abstract
 
-## What does it do?
+Structural mosaic abnormalities are large post-zygotic mutations present in a subset of cells and have been implicated in developmental disorders. While such mutations are routinely assessed in clinical diagnostics using cytogenetic or microarray testing, an adequate method using targeted or whole-genome sequencing data is lacking. Here, we present a method to detect structural mosaic abnormalities using deviations in allele fraction and read coverage from next generation sequencing data. 
 
 ## Installation
 MrMosaic requires a C-compiler such as gcc, samtools-1.3 and a couple of R packages.
