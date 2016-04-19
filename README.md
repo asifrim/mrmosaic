@@ -93,7 +93,7 @@ In this step MrMosaic uses the deviations in coverage (by using a group of other
 to call structural variants.
 
 This script takes the output of the previous step into account and a configuration file which needs to be edited to point to the correct directories:
-* `resource_dir`: directory containing the ecdf_GADAamp.merged.gada.10.R3.Robj and ecdf_nprobes.merged.gada.10.R3.Robj files
+* `resource_dir`: directory containing the `ecdf_GADAamp.merged.gada.10.R3.Robj` and `ecdf_nprobes.merged.gada.10.R3.Robj` files
 * `reference_dir`: directory containing a set of cnv_baf_data output files which MrMosaic can use as a reference for the mean coverage for the bait. Ideally these are 10+ samples sequenced
 using the same capturing platform/mean sequencing depth. 
 * `output_dir`: directory to output the resulting SV calls to.\
