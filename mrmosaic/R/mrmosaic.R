@@ -250,7 +250,7 @@ mrmosaic_calling_func <- function(data,t=t,window=40,width=5,by=1) {
     	print(paste("Processing chromosome ",chr))
         chrsubset <- subset(data,Chr==chr)
     	idx <- which(data$Chr != chr)
-    	background <- data[sample(idx,10000),]
+    	background <- data[sample(idx,10000,replace=TRUE),]
     	chrsubset <- compute_stats(mydf=chrsubset,background=background,window=window,by=by,width=width)
         #Run GADA segmentation on the Combined Fisher's Omnibus Statistic
         sink("/dev/null")
