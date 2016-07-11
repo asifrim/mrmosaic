@@ -186,7 +186,7 @@ int main_cnv(int argc, char *argv[]) {
     hts_idx_destroy(data[0]->idx);
     bam_hdr_destroy(data[0]->hdr);
     if (data[0]->fp) sam_close(data[0]->fp);
-    hts_itr_destroy(data[0]->iter);
+    // hts_itr_destroy(data[0]->iter);
     free(data);
 return 1;
 }
