@@ -94,7 +94,7 @@ annotate_devs <- function(mydf=mydf,width=width,by=by){
         mydf <- na.omit(mydf)
 
         # logR smoothing for all genotypes
-        mydf$logrdev        <- abs(mydf$Log.R.Ratio)
+        mydf$logrdev        <- abs(mydf$ADM3)
 		# Here, rollapply is faster than multi-cored mclapply. #TODO: find alternative multi-threaded method
         mydf$rollmedianlogr <- zoo::rollapply(mydf$logrdev,width,median, fill=NA)
 
@@ -245,12 +245,15 @@ loh_clon  <- function(bdev) 2*bdev
 mrmosaic_calling_func <- function(data,t=t,window=40,width=5,by=1) {
     #Get the name of the sim file out of the path and use it for parsing out the coordinates
     CHROMOSOMES <- c(seq(1:22))
+    # CHROMOSOMES <- c(10)
     output <- NULL
     for (chr in CHROMOSOMES) {
     	print(paste("Processing chromosome ",chr))
         chrsubset <- subset(data,Chr==chr)
+    	print(dim(chrsubset))
     	idx <- which(data$Chr != chr)
     	background <- data[sample(idx,10000,replace=TRUE),]
+    	print(paste("Computing stats chromosome ",chr))
     	chrsubset <- compute_stats(mydf=chrsubset,background=background,window=window,by=by,width=width)
         #Run GADA segmentation on the Combined Fisher's Omnibus Statistic
         sink("/dev/null")
@@ -269,7 +272,7 @@ mrmosaic_calling_func <- function(data,t=t,window=40,width=5,by=1) {
 			events$GADAamp<- events$MeanAmp
 			events$LRR    <- apply(cbind(events$Chrom, events$IniPos, events$EndPos),
 				MARGIN=1, FUN = function(x) {
-					mean(data$Log.R.Ratio[(data$Chr==x[1] & data$Pos >= x[2] & data$Pos <= x[3])])
+					mean(data$ADM3[(data$Chr==x[1] & data$Pos >= x[2] & data$Pos <= x[3])])
 			} )
 			events$bdev   <- apply(cbind(events$IniProbe, events$EndProbe),
 				MARGIN=1, FUN = function(x) {
