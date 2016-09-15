@@ -6,7 +6,9 @@ library(argparse)
 library(yaml)
 library(gada)
 library(zoo)
+library(parallel)
 library(mrmosaic)
+
 
 ####################################################################################################
 ## ARGUMENT PARSER
@@ -27,6 +29,7 @@ if (is.null(args$config) || is.null(args$input)){
 
 config <- yaml::yaml.load_file(args$config)
 input_file = args$input
+in_file = tail(strsplit(input_file, "/")[[1]],n=1)
 rd_data_dir = config$reference_dir
 out_dir = config$output_dir
 resource_dir = config$resource_dir
@@ -39,12 +42,13 @@ data = read_unique_depth_bait_data(input_file, length(count.fields(input_file)))
 log2_ratio = calc_log2_ratio(data, rdfiles)
 adm3_scores = calc_adm3_scores( data.frame( data, log2_ratio ) )
 mrm_data = reformat_for_mrmosaic(input_file,adm3_scores)
+output_path = paste(out_dir, paste(in_file,"adm3.txt",sep="."), sep="/")
+write.table(mrm_data, file=output_path, sep="\t", row.names=F, quote=F)
 
 print(paste(Sys.time(),": Running MrMosaic..."))
 results <- mrmosaic_calling_func(mrm_data,t=10)
 results <- annot_ll_and_recalc_sig(results,resource_dir)
 
-in_file = tail(strsplit(input_file, "/")[[1]],n=1)
 in_file_prefix  = gsub(x=in_file,pattern=".extraction.txt",replacement="")
 out_file_prefix = in_file_prefix
 opf1 = paste(out_dir, paste(out_file_prefix, "results.txt",sep="."), sep="/")
