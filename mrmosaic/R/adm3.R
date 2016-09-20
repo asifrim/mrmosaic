@@ -115,7 +115,7 @@ reformat_for_mrmosaic <- function(input_file,adm3_scores){
   snp_position = snp_positions[seq(1, length(snp_chr_positions), by=2)]
 
   mrm_probe_ids = paste("e.", snp_chr, ".", snp_position, sep="")
-  mrm_data = data.frame(as.character(mrm_probe_ids), as.numeric(snp_chr), as.numeric(snp_position), as.numeric(data$adm3), as.numeric(data$log2r), as.numeric(data$baf), as.character(data$GT))
+  mrm_data = data.frame(as.character(mrm_probe_ids), as.numeric(snp_chr), as.numeric(snp_position), as.numeric(data$adm3), as.numeric(data$lg2r), as.numeric(data$baf), as.character(data$GT))
   colnames(mrm_data) = c("Name", "Chr", "Position", "ADM3", "Log.R.Ratio", "B.Allele.Freq", "GType")
   mrm_data = mrm_data[!is.na(mrm_data$GType),]
   mrm_data = mrm_data[order(mrm_data$Chr, mrm_data$Position),]
