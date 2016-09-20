@@ -1,4 +1,4 @@
-#!/usr/bin/env Rscript
+#!/usr/bin/env /software/R-3.3.0/bin/Rscript
 
 VERSION=0.1
 
@@ -6,7 +6,6 @@ library(argparse)
 library(yaml)
 library(gada)
 library(zoo)
-library(parallel)
 library(mrmosaic)
 
 
