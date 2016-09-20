@@ -201,7 +201,7 @@ merge_nearby_gada_segments <- function(mydf) {
 	if (dim(mydf)[1] > dim(a0)[1]) {
 		for (i in 1:dim(multi)[1]) {
 			j <- multi[i,"j"]
-			Njoined <- multi[i,"times"]
+			Njoined <- multi[i,"times.Freq"]
 			a0 <- rbind(a0 , data.frame(mymerge_base(df2merge,j),Njoined=Njoined) )
 		}
 	}
@@ -279,7 +279,7 @@ mrmosaic_calling_func <- function(data,t=t,window=40,width=5,by=1) {
 					mean(  chrsubset$bdev[ x[1]:x[2] ]  )
 			} )
 			to_merge      <- events[,c("Chrom","IniPos","EndPos","LRR","bdev","Tgada","nProbe","GADAamp")]
-			merged        <- merge_nearby_gada_segments(to_merge)
+			merged        <- merge_nearby_gada_segments(to_merge)	
 			tmp_return    <- apply(cbind(merged$LRR,merged$bdev), MARGIN=1, FUN = function(x) add_clon(lrr=x[1],bdev=x[2]) )
 			tmp_output    <- cbind(merged,do.call(rbind, tmp_return))
 			tmp_output$clon <- as.vector(unlist(tmp_output$clon))
