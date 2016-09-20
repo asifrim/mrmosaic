@@ -198,7 +198,7 @@ merge_nearby_gada_segments <- function(mydf) {
 	multi    <- data.frame(j=as.numeric(names(multi)),times=multi)
 	a0 <- data.frame()
 	if ( any(! df2merge$j %in% multi$j) ) a0 <- data.frame(df2merge[! df2merge$j %in% multi$j,],Njoined=1)
-	if (	[1]) {
+	if (dim(mydf)[1] > dim(a0)[1]) {
 		for (i in 1:dim(multi)[1]) {
 			j <- multi[i,"j"]
 			Njoined <- multi[i,2]
