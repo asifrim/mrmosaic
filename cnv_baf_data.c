@@ -188,7 +188,7 @@ int main_cnv(int argc, char *argv[]) {
     if (data[0]->fp) sam_close(data[0]->fp);
     // hts_itr_destroy(data[0]->iter);
     free(data);
-return 1;
+return 0;
 }
 
 int main(int argc, char *argv[]) {
