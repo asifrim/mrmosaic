@@ -39,6 +39,10 @@ Some newer OSX versions complain about not finding the gfortran-4.8 compiler. Yo
 brew install gcc
 ```
 
+Additionally, you will need the wget package from homebrew unless you have it installed already:
+```
+brew install wget --with-libressl
+```
 
 And then pointing R to the correct directories in `~/.R/MakeVars`:
 
